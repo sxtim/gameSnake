@@ -37,8 +37,4 @@ public class Apple {
         appleY = new Random().nextInt(20) * GameField.getDOT_SIZE();
 
     }
-
-
-    // Todo
-
 }
