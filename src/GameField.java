@@ -7,14 +7,14 @@ import java.awt.event.KeyEvent;
 
 public class GameField extends JPanel implements ActionListener {
 
-    private static final int SIZE = 320;
+    private static final int SIZE = 640;
     public static int DOT_SIZE = 16;
-    private static final int ALL_DOTS = 400;
-    private static Image imageDot;
+    public static final int ALL_DOTS = 800;
 
-    private int[] x = new int[ALL_DOTS];
-    private int[] y = new int[ALL_DOTS];
-    private int dots; // размер змейки
+
+    public static int[] x = new int[ALL_DOTS];
+    public static int[] y = new int[ALL_DOTS];
+    public static int dots; // размер змейки
     private Timer timer;
     private boolean right = true;
     private boolean left = false;
@@ -24,7 +24,7 @@ public class GameField extends JPanel implements ActionListener {
 
     public GameField() {
         setBackground(Color.BLACK);
-        loadImages();
+        LoadImages.loadImages();
         initGame();
         addKeyListener(new FieldKeyListener());
         setFocusable(true);
@@ -40,7 +40,7 @@ public class GameField extends JPanel implements ActionListener {
             x[i] = 48 - i * DOT_SIZE;
             y[i] = 48;
         }
-        timer = new Timer(250, this);
+        timer = new Timer(200, this);
         timer.start();
         Apple.createApple();
 
@@ -52,14 +52,14 @@ public class GameField extends JPanel implements ActionListener {
         if (inGame) {
             g.drawImage(Apple.getImageApple(), Apple.getAppleX(), Apple.getAppleY(), this);
             for (int i = 0; i < dots; i++) {
-                g.drawImage(imageDot, x[i], y[i], this);
+                g.drawImage(LoadImages.imageDot, x[i], y[i], this);
             }
         } else {
             String str = "Game Over";
-            //Font f = new Font("Arial",14,Font.BOLD);
+            Font f = new Font("Arial", Font.BOLD, 14);
             g.setColor(Color.white);
-            // g.setFont(f);
-            g.drawString(str, 125, SIZE / 2);
+             g.setFont(f);
+            g.drawString(str, SIZE / 2, SIZE / 2);
         }
     }
 
@@ -68,7 +68,7 @@ public class GameField extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (inGame) {
             move();
-            checkApple();
+            Apple.checkApple();
             checkCollisions();
         }
         repaint();
@@ -96,7 +96,7 @@ public class GameField extends JPanel implements ActionListener {
 
     private void checkCollisions() {
         for (int i = dots; i > 0; i--) {
-            if (i > 4 && x[0] == x[i] && y[0] == y[i])  // если голова сталкивается c собой
+            if (i > 4 && x[0] == x[i] && y[0] == y[i])  // если голова сталкивается c телом
                 inGame = false;
 
             if (x[0] > SIZE)
@@ -115,21 +115,7 @@ public class GameField extends JPanel implements ActionListener {
         }
     }
 
-    public void checkApple() {
-        if (x[0] == Apple.getAppleX() && y[0] == Apple.getAppleY()) {
-            dots++;
-            Apple.createApple();
-        }
-    }
 
-
-    public static void loadImages() {
-        ImageIcon iia = new ImageIcon("apple.png");
-        Apple.setImageApple(iia.getImage());
-
-        ImageIcon iid = new ImageIcon("appleDot.png");
-        imageDot = iid.getImage();
-    }
 
     class FieldKeyListener extends KeyAdapter {
         @Override

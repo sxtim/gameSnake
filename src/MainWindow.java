@@ -8,7 +8,7 @@ public class MainWindow extends JFrame {
         public MainWindow() {
                 setTitle("SNAKE");
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
-                setSize(320,345);
+                setSize(640,690);
                 setLocation(1200,400);
                 add(new GameField());
                 setVisible(true);

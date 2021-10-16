@@ -11,14 +11,6 @@ public class Apple {
         Apple.imageApple = imageApple;
     }
 
-    public static void setAppleX(int appleX) {
-        Apple.appleX = appleX;
-    }
-
-    public static void setAppleY(int appleY) {
-        Apple.appleY = appleY;
-    }
-
     public static Image getImageApple() {
         return imageApple;
     }
@@ -32,9 +24,14 @@ public class Apple {
     }
 
     public static void createApple() {
-
         appleX = new Random().nextInt(20) * GameField.getDOT_SIZE();
         appleY = new Random().nextInt(20) * GameField.getDOT_SIZE();
+    }
 
+    public static void checkApple() {
+        if (GameField.x[0] == Apple.getAppleX() && GameField.y[0] == Apple.getAppleY()) {
+            GameField.dots++;
+            Apple.createApple();
+        }
     }
 }
