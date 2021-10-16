@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
@@ -28,9 +27,9 @@ public class Apple {
         appleY = new Random().nextInt(20) * GameField.DOT_SIZE;
     }
 
-    public static void checkApple() {
-        if (GameField.x[0] == Apple.getAppleX() && GameField.y[0] == Apple.getAppleY()) {
-            GameField.dots++;
+    public static void checkApple(GameField gameField) {
+        if (gameField.x[0] == Apple.getAppleX() && gameField.y[0] == Apple.getAppleY()) {
+            gameField.dots++;
             Apple.createApple();
         }
     }
