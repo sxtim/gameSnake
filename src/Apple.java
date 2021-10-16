@@ -24,8 +24,8 @@ public class Apple {
     }
 
     public static void createApple() {
-        appleX = new Random().nextInt(20) * GameField.getDOT_SIZE();
-        appleY = new Random().nextInt(20) * GameField.getDOT_SIZE();
+        appleX = new Random().nextInt(20) * GameField.DOT_SIZE;
+        appleY = new Random().nextInt(20) * GameField.DOT_SIZE;
     }
 
     public static void checkApple() {

@@ -7,10 +7,10 @@ import java.awt.event.KeyEvent;
 
 public class GameField extends JPanel implements ActionListener {
 
-    private static final int SIZE = 640;
+    public static final int SIZE = 640;
     public static int DOT_SIZE = 16;
     public static final int ALL_DOTS = 800;
-    private boolean inGame = true;
+
 
     public static int[] x = new int[ALL_DOTS];
     public static int[] y = new int[ALL_DOTS];
@@ -43,7 +43,7 @@ public class GameField extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (inGame) {
+        if (GameEvents.inGame) {
             g.drawImage(Apple.getImageApple(), Apple.getAppleX(), Apple.getAppleY(), this);
             for (int i = 0; i < dots; i++) {
                 g.drawImage(LoadImages.imageDot, x[i], y[i], this);
@@ -60,33 +60,16 @@ public class GameField extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (inGame) {
+        if (GameEvents.inGame) {
             Control.move();
             Apple.checkApple();
-            checkCollisions();
+            GameEvents.checkCollisions();
         }
         repaint();
 
     }
 
-    private void checkCollisions() {
-        for (int i = dots; i > 0; i--) {
-            if (i > 4 && x[0] == x[i] && y[0] == y[i])  // если голова сталкивается c телом
-                inGame = false;
 
-            if (x[0] > SIZE)
-                inGame = false;
-
-            if (x[0] < 0)
-                inGame = false;
-
-            if (y[0] > SIZE)
-                inGame = false;
-
-            if (y[0] < 0)
-                inGame = false;
-        }
-    }
 
 
 
