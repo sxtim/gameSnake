@@ -9,22 +9,22 @@ public class Control {
 
 
 
-    public static void move() {
-        for (int i = GameField.dots; i > 0; i--) {
-            GameField.x[i] = GameField.x[i - 1];
-            GameField.y[i] = GameField.y[i - 1];
+    public static void move(GameField gameField) {
+        for (int i = gameField.dots; i > 0; i--) {
+            gameField.x[i] = gameField.x[i - 1];
+            gameField.y[i] = gameField.y[i - 1];
         }
         if (left) {
-            GameField.x[0] -= GameField.DOT_SIZE;
+            gameField.x[0] -= GameField.DOT_SIZE;
         }
         if (right) {
-            GameField.x[0] += GameField.DOT_SIZE;
+            gameField.x[0] += GameField.DOT_SIZE;
         }
         if (up) {
-            GameField.y[0] -= GameField.DOT_SIZE;
+            gameField.y[0] -= GameField.DOT_SIZE;
         }
         if (down) {
-            GameField.y[0] += GameField.DOT_SIZE;
+            gameField.y[0] += GameField.DOT_SIZE;
         }
     }
 
@@ -32,6 +32,7 @@ public class Control {
         @Override
         public void keyPressed(KeyEvent e) {
             super.keyPressed(e);
+            System.out.println("key pressed e= " + e.getKeyCode());
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_LEFT && !right) {
                 left = true;
