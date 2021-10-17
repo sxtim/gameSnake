@@ -10,8 +10,8 @@ public class MainWindow extends JFrame {
                 setTitle("SNAKE");
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
                 setSize(640,690);
-                setLocation(1200,400);
-                startNewGame();
+                setLocation(800,200);
+                startMenu();
                 setVisible(true);
         }
 
@@ -21,8 +21,13 @@ public class MainWindow extends JFrame {
         }
 
         public void startNewGame() {
-                System.out.println("startNewGame");
+                System.out.println("restart");
                 replaceComponent(new GameField(this));
+        }
+
+        public void startMenu() {
+                System.out.println("startMenu");
+                replaceComponent(new Menu(this));
         }
 
         private void replaceComponent(JComponent comp) {

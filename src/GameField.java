@@ -37,7 +37,7 @@ public class GameField extends JPanel implements ActionListener {
             x[i] = 48 - i * DOT_SIZE;
             y[i] = 48;
         }
-        timer = new Timer(200, this);
+        timer = new Timer(240, this);
         timer.start();
         Apple.createApple();
 
@@ -51,23 +51,18 @@ public class GameField extends JPanel implements ActionListener {
             for (int i = 0; i < dots; i++) {
                 g.drawImage(LoadImages.imageDot, x[i], y[i], this);
             }
-        } else {
-            // not used
-            String str = "Game Over";
-            Font f = new Font("Arial", Font.BOLD, 14);
-            g.setColor(Color.white);
-            g.setFont(f);
-            g.drawString(str, SIZE / 2, SIZE / 2);
         }
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (gameEvents.inGame) {
             Control.move(this);
             Apple.checkApple(this);
             gameEvents.checkCollisions();
+
             repaint();
         } else {
             timer.stop();

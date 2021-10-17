@@ -28,7 +28,7 @@ public class Apple {
     }
 
     public static void checkApple(GameField gameField) {
-        if (gameField.x[0] == Apple.getAppleX() && gameField.y[0] == Apple.getAppleY()) {
+        if (gameField.x[0] == appleX && gameField.y[0] == appleY) {
             gameField.dots++;
             Apple.createApple();
         }
